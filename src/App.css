@@ -1,0 +1,130 @@
+/* STYLY JEN PRO KOMPONENTU <App /> */
+
+body {
+  font-family: "Ayuthaya", monospace;
+}
+
+.text-primary {
+  color: #5b5b5b !important;
+}
+
+.text-secondary {
+  color: #5d6b48 !important;
+}
+
+.text-success {
+  color: #94aa63 !important;
+}
+
+.text-danger {
+  color: #dc3e0a !important;
+}
+
+.text-warning {
+  color: #ffaa00 !important;
+}
+
+.text-info {
+  color: #006b9d !important;
+}
+
+.text-light {
+  color: #d9d9d9 !important;
+}
+
+.text-beige {
+  color: #c0b8b0 !important;
+}
+
+.text-azure {
+  color: #b5bfc3 !important;
+}
+
+.bg-primary {
+  background-color: #5b5b5b !important;
+}
+
+.bg-secondary {
+  background-color: #5d6b48 !important;
+}
+
+.bg-success {
+  background-color: #94aa63 !important;
+}
+
+.bg-danger {
+  background-color: #dc3e0a !important;
+}
+
+.bg-warning {
+  background-color: #ffaa00 !important;
+}
+
+.bg-info {
+  background-color: #006b9d !important;
+}
+
+.bg-light {
+  background-color: #d9d9d9 !important;
+}
+
+.bg-beige {
+  background-color: #c0b8b0 !important;
+}
+
+.bg-azure {
+  background-color: #b5bfc3 !important;
+}
+
+.button-primary {
+  background-color: #5b5b5b !important;
+  color: white;
+}
+
+.button-secondary {
+  background-color: #5d6b48 !important;
+  color: white;
+}
+
+.button-success {
+  background-color: #94aa63 !important;
+  color: white;
+}
+
+.button-danger {
+  background-color: #dc3e0a !important;
+  color: white;
+}
+
+.button-warning {
+  background-color: #ffaa00 !important;
+  color: white;
+}
+
+.button-info {
+  background-color: #006b9d !important;
+  color: white;
+}
+
+.button-light {
+  background-color: #d9d9d9 !important;
+  color: black;
+}
+
+.button-beige {
+  background-color: #c0b8b0 !important;
+  color: black;
+}
+
+.button-azure {
+  background-color: #b5bfc3 !important;
+  color: black;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 10px #c0b8b0;
+}
+
+.nav-link:hover {
+  color: #ffaa00 !important;
+}
