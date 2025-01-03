@@ -11,16 +11,19 @@ const Plants = () => {
     handleSearch,
     handleInputChange
   ) => {
+    const filteredObservations = observations.filter(
+      (observation) => observation.taxon?.iconicTaxonName === "Plantae"
+    )
     return (
       <div>
         <div className="container">
           <SearchInput
-            value={inputData.taxonName}
+            value={inputData}
             onChange={handleInputChange}
             onSearch={handleSearch}
             totalResuts={totalResults}
           />
-          <SearchBody observations={observations} />
+          <SearchBody observations={filteredObservations} />
         </div>
       </div>
     )

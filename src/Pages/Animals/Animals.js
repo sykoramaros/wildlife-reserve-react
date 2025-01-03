@@ -14,7 +14,9 @@ const Animals = () => {
     const filteredObservations = observations.filter(
       (observation) =>
         observation.taxon.iconicTaxonName === "Animalia" ||
-        observation.taxon.iconicTaxonName === "Mammalia"
+        observation.taxon.iconicTaxonName === "Mammalia" ||
+        observation.taxon.iconicTaxonName === "Plantae" ||
+        observation.taxon.iconicTaxonName === "Aves"
     )
     return (
       <div>
@@ -30,7 +32,6 @@ const Animals = () => {
       </div>
     )
   }
-
   return <DataFetcher components={renderSearchInput} />
 }
 

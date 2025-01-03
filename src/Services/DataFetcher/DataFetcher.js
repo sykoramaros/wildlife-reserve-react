@@ -12,23 +12,17 @@ const DataFetcher = ({ components }) => {
 
   // Funkce pro nacitani dat z API
   const fetchObservations = async () => {
-    if (inputData.taxonName) {
-      try {
-        const filters = {}
-        if (inputData.taxonName) filters.taxonName = inputData.taxonName
-        if (inputData.placeGuess) filters.place = inputData.placeGuess
-
-        const response = await getObservationsByMultipleFilters(filters)
-        const fetchedObservations = response.results
-        setTotalResults(response.totalResults)
-        setObservations(
-          Array.isArray(fetchedObservations) ? fetchedObservations : []
-        )
-      } catch (error) {
-        console.error("Error fetching observations:", error)
-        setTotalResults(0)
-        setObservations([])
-      }
+    try {
+      const response = await getObservationsByMultipleFilters(inputData)
+      const fetchedObservations = response.results
+      setTotalResults(response.totalResults)
+      setObservations(
+        Array.isArray(fetchedObservations) ? fetchedObservations : []
+      )
+    } catch (error) {
+      console.error("Error fetching observations:", error)
+      setTotalResults(0)
+      setObservations([])
     }
   }
 

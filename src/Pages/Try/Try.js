@@ -11,16 +11,19 @@ const Try = () => {
     handleSearch,
     handleInputChange
   ) => {
+    const filteredObservations = observations.filter(
+      (observation) => /^.*$/.test(observation.taxon?.iconicTaxonName) // pro cokoliv
+    )
     return (
       <div>
         <div className="container">
           <SearchInput
-            value={inputData.taxonName}
+            value={inputData}
             onChange={handleInputChange}
             onSearch={handleSearch}
             totalResuts={totalResults}
           />
-          <SearchBody observations={observations} />
+          <SearchBody observations={filteredObservations} />
         </div>
       </div>
     )
