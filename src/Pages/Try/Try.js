@@ -3,7 +3,7 @@ import DataFetcher from "../../Services/DataFetcher/DataFetcher"
 import SearchInput from "../../Components/SearchInput/SearchInput"
 import SearchBody from "../../Components/SearchBody/SearchBody"
 
-const Fungi = () => {
+const Try = () => {
   const renderSearchInput = (
     observations,
     totalResults,
@@ -29,4 +29,4 @@ const Fungi = () => {
   return <DataFetcher components={renderSearchInput} />
 }
 
-export default Fungi
+export default Try

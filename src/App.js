@@ -13,6 +13,7 @@ import Fungi from "./Pages/Fungi/Fungi"
 import Users from "./Pages/Users/Users"
 import Roles from "./Pages/Roles/Roles"
 import OurRoots from "./Pages/OurRoots/OurRoots"
+import Try from "./Pages/Try/Try"
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/plants" element={<Plants />} />
           <Route path="/insects" element={<Insects />} />
           <Route path="/fungi" element={<Fungi />} />
+          <Route path="/try" element={<Try />} />
           <Route path="/users" element={<Users />} />
           <Route path="/roles" element={<Roles />} />
           <Route path="/ourroots" element={<OurRoots />} />
