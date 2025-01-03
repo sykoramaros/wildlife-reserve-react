@@ -7,7 +7,7 @@ const DataFetcher = ({ components }) => {
   const [totalResults, setTotalResults] = useState(0) // celkovy pocet vstupnich dat z API backendu
   const [inputData, setInputData] = useState({
     // uzivatelovy vstupni data z frontendu
-    taxonName: "Rose",
+    taxonName: "",
   })
 
   // Funkce pro nacitani dat z API

@@ -1,7 +1,7 @@
 import React from "react"
 import DataFetcher from "../../Services/DataFetcher/DataFetcher"
 import SearchInput from "../../Components/SearchInput/SearchInput"
-import SearchBody from "../../Components/SearchBody/SearchBody"
+import SearchBodyOlder from "../../Components/SearchBody/SearchBodyOlder"
 
 const Try = () => {
   const renderSearchInput = (
@@ -23,7 +23,7 @@ const Try = () => {
             onSearch={handleSearch}
             totalResuts={totalResults}
           />
-          <SearchBody observations={filteredObservations} />
+          <SearchBodyOlder observations={filteredObservations} />
         </div>
       </div>
     )

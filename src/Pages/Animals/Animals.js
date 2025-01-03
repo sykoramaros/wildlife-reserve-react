@@ -15,7 +15,8 @@ const Animals = () => {
       (observation) =>
         observation.taxon.iconicTaxonName === "Animalia" ||
         observation.taxon.iconicTaxonName === "Mammalia" ||
-        observation.taxon.iconicTaxonName === "Plantae" ||
+        observation.taxon.iconicTaxonName === "Actinopterygii" ||
+        observation.taxon.iconicTaxonName === "Mollusca" ||
         observation.taxon.iconicTaxonName === "Aves"
     )
     return (
