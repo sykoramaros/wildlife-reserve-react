@@ -13,6 +13,7 @@ import Fungi from "./Pages/Fungi/Fungi"
 import Users from "./Pages/Users/Users"
 import Roles from "./Pages/Roles/Roles"
 import OurRoots from "./Pages/OurRoots/OurRoots"
+import Login from "./Pages/Login/Login"
 import Try from "./Pages/Try/Try"
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/users" element={<Users />} />
           <Route path="/roles" element={<Roles />} />
           <Route path="/ourroots" element={<OurRoots />} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
