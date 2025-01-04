@@ -4,6 +4,14 @@ const ObservationCardOlder = ({ observation }) => {
   return (
     <div className="col-md-4" key={observation.id}>
       <div className="card h-100">
+        <img
+          src={
+            observation.photos?.[0]?.url?.replace("square", "medium") ||
+            "./Photos/ImageNotFound.jpg"
+          }
+          className="card-img-top"
+          alt="..."
+        />
         <div className="card-body">
           <p className="card-text">
             ID:
