@@ -11,7 +11,7 @@ const SearchInput = ({ value, onChange, onSearch, totalResuts }) => {
             name="taxonName"
             value={value.taxonName || ""}
             onChange={onChange}
-            placeholder="Enter name"
+            placeholder="Type name"
           />
         </div>
         <br />

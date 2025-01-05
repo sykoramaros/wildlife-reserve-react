@@ -17,6 +17,7 @@ const Plants = () => {
     return (
       <div>
         <div className="container">
+          <h1 class="text-center text-primary display-4 mt-4">Plants</h1>
           <SearchInput
             value={inputData}
             onChange={handleInputChange}

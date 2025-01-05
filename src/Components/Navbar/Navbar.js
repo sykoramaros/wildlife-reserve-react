@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
   return (
@@ -42,30 +43,43 @@ const Navbar = () => {
                   Reserves
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/animals"}>
-                  Animals
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/plants"}>
-                  Plants
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/insects"}>
-                  Insects
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/fungi"}>
-                  Fungi
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/try"}>
-                  Try
-                </Link>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Observe
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <Link class="dropdown-item" to={"/animals"}>
+                      Animals
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to={"/plants"}>
+                      Plants
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to={"/insects"}>
+                      Insects
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to={"/fungi"}>
+                      Fungi
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to={"/try"}>
+                      Try
+                    </Link>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <Link class="nav-link" to={"/users"}>
@@ -81,6 +95,9 @@ const Navbar = () => {
                 <Link class="nav-link" to={"/our-roots"}>
                   OuRoots
                 </Link>
+              </li>
+              <li class="nav-item">
+                <LogoutButton />
               </li>
             </ul>
           </div>
