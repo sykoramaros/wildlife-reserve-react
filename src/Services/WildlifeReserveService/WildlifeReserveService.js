@@ -30,3 +30,22 @@ export const getObservationsByMultipleFilters = async (filters) => {
     return null
   }
 }
+
+export const getObservationsByTaxonName = async (taxonName) => {
+  try {
+    if (!taxonName) {
+      console.error("Taxon name is required.")
+      return null
+    }
+    const queryParams = new URLSearchParams()
+    queryParams.append("taxonName", taxonName)
+    const response = await axios.get(
+      `http://localhost:5272/api/Observation/byTaxonName?${queryParams.toString()}`
+    )
+
+    return response.data
+  } catch (error) {
+    console.error("Error fetching observations:", error)
+    return null
+  }
+}

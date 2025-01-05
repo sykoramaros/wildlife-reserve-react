@@ -1,7 +1,7 @@
 import React from "react"
 import ObservationCard from "../../Components/ObservationCard/ObservationCard"
 
-
+// Funkce pro resetování výsledků
 
 const SearchBody = ({ observations }) => {
   return (
