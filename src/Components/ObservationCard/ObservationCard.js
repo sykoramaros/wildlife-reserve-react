@@ -73,12 +73,14 @@ const ObservationCard = ({ observation }) => {
           </button>
         </div>
         <div className="card-body d-flex flex-column">
-          <h5 className="card-title">{observation.taxon.name}</h5>
+          <h5 className="card-title">
+            {observation.taxon?.name || "Unknown Taxon"}
+          </h5>
           <p className="card-text">{observation.taxon?.preferredCommonName}</p>
           <p className="card-text fs-6">ID: {observation.id}</p>
           <p className="card-text">
             <span className="fs-2">🌍 </span>
-            {observation.placeGuess}
+            {observation.placeGuess || "Unknown Place"}
           </p>
           <p className="card-text mt-auto">
             <span className="fs-2">🗓️ </span>

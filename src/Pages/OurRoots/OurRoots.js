@@ -7,7 +7,7 @@ const OurRoots = () => {
         <h1 class="text-center text-success mb-4">Our Roots 🦥</h1>
         <p class="lead text-center text-muted">
           Welcome to <strong>Our Roots</strong> – a lighthearted section where
-          we dig into the essence of our mission, sprouting transparency like
+          we dig into the essence of our goals, sprouting transparency like
           wildflowers in spring.
         </p>
         <div class="card my-3">
@@ -42,7 +42,9 @@ const OurRoots = () => {
         </div>
         <div class="card my-3">
           <div class="card-body">
-            <h5 class="card-title text-primary">4. Respecting Your Forest 🌳</h5>
+            <h5 class="card-title text-primary">
+              4. Respecting Your Forest 🌳
+            </h5>
             <p class="card-text">
               We respect your privacy. Think of us as careful gardeners,
               ensuring your personal data stays safe, secure, and used only for
@@ -52,7 +54,8 @@ const OurRoots = () => {
         </div>
         <p class="text-center mt-4">
           Feel free to roam, explore, and help us grow this forest of knowledge!
-          Together, we’re planting seeds for our wonderfull planet. 🌍
+          <br />
+          Planting seeds for our wonderfull planet. 🌍
         </p>
       </div>
     </div>

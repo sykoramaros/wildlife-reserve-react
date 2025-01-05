@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
+import { useState, useEffect } from "react"
 import { getObservationsByMultipleFilters } from "../../Services/WildlifeReserveService/WildlifeReserveService"
-import SearchInput from "../../Components/SearchInput/SearchInput"
-import SearchBody from "../../Components/SearchBody/SearchBody"
 
-const DataFetcher = ({ components }) => {
-  const [observations, setObservations] = useState([])
-  const [totalResults, setTotalResults] = useState(0)
+const DataFetcherOld = ({ components }) => {
+  const [observations, setObservations] = useState([]) // veskera vstupni data z API
+  const [totalResults, setTotalResults] = useState(0) // celkovy pocet vstupnich dat z API backendu
   const [inputData, setInputData] = useState({
+    // uzivatelovy vstupni data z frontendu
     taxonName: "",
     year: null,
     month: null,
     day: null,
   })
 
+  // Funkce pro nacitani dat z API
   const fetchObservations = async () => {
+    // Zkontroluj, že alespoň jeden filtr je vyplněný
     if (
       !inputData.taxonName &&
       !inputData.year &&
@@ -21,7 +23,7 @@ const DataFetcher = ({ components }) => {
       !inputData.day
     ) {
       console.error("At least one filter is required.")
-      return
+      return // Pokud nejsou žádné filtry, neprováděj požadavek
     }
 
     try {
@@ -53,17 +55,30 @@ const DataFetcher = ({ components }) => {
     }
   }, [inputData])
 
+  // const handleInputChange = (element) => {
+  //   const { name, value } = element.target
+  //   setInputData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value ? Number(value) : null,
+  //   }))
+  // }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    onChange({ target: { name, value } })
+  }
+
   return (
     <div>
-      <SearchInput
-        value={inputData}
-        setInputData={setInputData}
-        onSearch={handleSearch}
-        totalResults={totalResults}
-      />
-      <SearchBody observations={observations} />
+      {components(
+        observations,
+        totalResults,
+        inputData,
+        handleSearch,
+        handleInputChange
+      )}
     </div>
   )
 }
 
-export default DataFetcher
+export default DataFetcherOld

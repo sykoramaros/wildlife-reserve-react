@@ -1,6 +1,8 @@
 import React from "react"
 import ObservationCard from "../../Components/ObservationCard/ObservationCard"
 
+
+
 const SearchBody = ({ observations }) => {
   return (
     <div>

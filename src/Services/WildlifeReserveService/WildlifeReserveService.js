@@ -15,6 +15,7 @@ export const getObservationsByMultipleFilters = async (filters) => {
     if (filters.day) queryParams.append("day", filters.day)
     if (filters.month) queryParams.append("month", filters.month)
     if (filters.year) queryParams.append("year", filters.year)
+    // if (filters.year !== undefined) queryParams.append("year", filters.year)
     if (filters.identificated !== undefined)
       queryParams.append("identificated", filters.identificated)
     if (filters.place) queryParams.append("place", filters.place)
