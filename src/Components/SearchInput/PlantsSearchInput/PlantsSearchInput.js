@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { getObservationsByMultipleFilters } from "../../Services/WildlifeReserveService/WildlifeReserveService" // Importování služby pro získání pozorování s vícero filtry
-import SearchBody from "../../Components/SearchBody/SearchBody" // Importování komponenty pro zobrazení výsledků vyhledávání
+import { getObservationsByMultipleFilters } from "../../../Services/WildlifeReserveService/WildlifeReserveService" // Importování služby pro získání pozorování s vícero filtry
+import SearchBody from "../../../Components/SearchBody/SearchBody" // Importování komponenty pro zobrazení výsledků vyhledávání
 
 // Komponenta pro zadání vyhledávacího vstupu a zobrazení výsledků
-const SearchInput = ({ onSearch }) => {
+const PlantsSearchInput = ({ onSearch }) => {
   // Stav pro pozorování, celkový počet výsledků a vstupní data
   const [observations, setObservations] = useState([]) // Stav pro uložení pozorování
   const [totalResults, setTotalResults] = useState(0) // Stav pro uložení celkového počtu výsledků
@@ -137,4 +137,4 @@ const SearchInput = ({ onSearch }) => {
   )
 }
 
-export default SearchInput
+export default PlantsSearchInput

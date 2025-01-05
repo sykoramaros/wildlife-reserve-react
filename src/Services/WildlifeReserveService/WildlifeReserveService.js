@@ -31,18 +31,17 @@ export const getObservationsByMultipleFilters = async (filters) => {
   }
 }
 
-export const getObservationsByTaxonName = async (taxonName) => {
+export const getObservationsByPlantTaxonName = async (taxonName) => {
   try {
     if (!taxonName) {
-      console.error("Taxon name is required.")
+      console.error("Plant taxon name is required.")
       return null
     }
     const queryParams = new URLSearchParams()
     queryParams.append("taxonName", taxonName)
     const response = await axios.get(
-      `http://localhost:5272/api/Observation/byTaxonName?${queryParams.toString()}`
+      `http://localhost:5272/api/Observation/byPlantTaxonName?${queryParams.toString()}`
     )
-
     return response.data
   } catch (error) {
     console.error("Error fetching observations:", error)
