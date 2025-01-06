@@ -3,10 +3,6 @@ import ObservationCard from "../../Components/ObservationCard/ObservationCard"
 
 // Funkce pro resetování výsledků
 const SearchBody = ({ observations }) => {
-  if (!Array.isArray(observations) || observations.length === 0) {
-    return <p>No observations available.</p> // Zobrazí zprávu, pokud není k dispozici žádné pozorování
-  }
-
   return (
     <div>
       <div className="container">

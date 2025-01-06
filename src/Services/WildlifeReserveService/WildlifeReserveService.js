@@ -31,6 +31,24 @@ export const getObservationsByMultipleFilters = async (filters) => {
   }
 }
 
+export const getObservationsByAnimalTaxonName = async (taxonName) => {
+  try {
+    if (!taxonName) {
+      console.error("Animal taxon name is required.")
+      return null
+    }
+    const queryParams = new URLSearchParams()
+    queryParams.append("taxonName", taxonName)
+    const response = await axios.get(
+      `http://localhost:5272/api/Observation/byAnimalTaxonName?${queryParams.toString()}`
+    )
+    return response.data
+  } catch (error) {
+    console.error("Error fetching observations:", error)
+    return null
+  }
+}
+
 export const getObservationsByPlantTaxonName = async (taxonName) => {
   try {
     if (!taxonName) {
@@ -41,6 +59,42 @@ export const getObservationsByPlantTaxonName = async (taxonName) => {
     queryParams.append("taxonName", taxonName)
     const response = await axios.get(
       `http://localhost:5272/api/Observation/byPlantTaxonName?${queryParams.toString()}`
+    )
+    return response.data
+  } catch (error) {
+    console.error("Error fetching observations:", error)
+    return null
+  }
+}
+
+export const getObservationsByInsectTaxonName = async (taxonName) => {
+  try {
+    if (!taxonName) {
+      console.error("Insect taxon name is required.")
+      return null
+    }
+    const queryParams = new URLSearchParams()
+    queryParams.append("taxonName", taxonName)
+    const response = await axios.get(
+      `http://localhost:5272/api/Observation/byInsectTaxonName?${queryParams.toString()}`
+    )
+    return response.data
+  } catch (error) {
+    console.error("Error fetching observations:", error)
+    return null
+  }
+}
+
+export const getObservationsByFungiTaxonName = async (taxonName) => {
+  try {
+    if (!taxonName) {
+      console.error("Fungus taxon name is required.")
+      return null
+    }
+    const queryParams = new URLSearchParams()
+    queryParams.append("taxonName", taxonName)
+    const response = await axios.get(
+      `http://localhost:5272/api/Observation/byFungiTaxonName?${queryParams.toString()}`
     )
     return response.data
   } catch (error) {

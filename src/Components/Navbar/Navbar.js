@@ -74,9 +74,37 @@ const Navbar = () => {
                       Fungi
                     </Link>
                   </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Try
+                </a>
+                <ul class="dropdown-menu">
                   <li>
-                    <Link class="dropdown-item" to={"/try"}>
-                      Try
+                    <Link class="dropdown-item" to={"/animals-try"}>
+                      AnimalsTry
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to={"/plants-try"}>
+                      PlantsTry
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to={"/insects-try"}>
+                      InsectsTry
+                    </Link>
+                  </li>
+                  <li>
+                    <Link class="dropdown-item" to={"/fungi-try"}>
+                      FungiTry
                     </Link>
                   </li>
                 </ul>

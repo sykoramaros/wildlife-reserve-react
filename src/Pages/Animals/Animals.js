@@ -40,21 +40,38 @@ const Animals = () => {
 
   // Funkce pro vyhledávání na základě zadaných hodnot
   const handleSearch = () => {
-    // Filtrujeme pozorování podle zadaných hodnot (například podle taxonName, roku, měsíce, dne)
+    // Filtrujeme pozorování podle zadaných hodnot (například podle taxonName, roku, měsíce, dne, a iconicTaxonName)
     const filteredObservations = observations.filter((observation) => {
-      const matchesTaxon = observation.taxon.iconicTaxonName.includes(
-        inputData.taxonName
-      )
+      const matchesTaxon = inputData.taxonName
+        ? observation.taxon.iconicTaxonName.includes(inputData.taxonName)
+        : true
+
+      const matchesIconicTaxonName =
+        observation.taxon.iconicTaxonName === "Animalia" ||
+        observation.taxon.iconicTaxonName === "Mammalia" ||
+        observation.taxon.iconicTaxonName === "Actinopterygii" ||
+        observation.taxon.iconicTaxonName === "Mollusca" ||
+        observation.taxon.iconicTaxonName === "Aves"
+
       const matchesYear = inputData.year
         ? observation.date.startsWith(inputData.year)
         : true
+
       const matchesMonth = inputData.month
         ? observation.date.includes(`-${inputData.month}-`)
         : true
+
       const matchesDay = inputData.day
         ? observation.date.includes(`-${inputData.day}-`)
         : true
-      return matchesTaxon && matchesYear && matchesMonth && matchesDay
+
+      return (
+        matchesTaxon &&
+        matchesIconicTaxonName &&
+        matchesYear &&
+        matchesMonth &&
+        matchesDay
+      )
     })
 
     setObservations(filteredObservations)

@@ -14,7 +14,10 @@ import Fungi from "./Pages/Fungi/Fungi"
 import Users from "./Pages/Users/Users"
 import Roles from "./Pages/Roles/Roles"
 import OurRoots from "./Pages/OurRoots/OurRoots"
-import Try from "./Pages/Try/Try"
+import AnimalsTry from "./Pages/Try/AnimalsTry"
+import PlantsTry from "./Pages/Try/PlantsTry"
+import InsectsTry from "./Pages/Try/InsectsTry"
+import FungiTry from "./Pages/Try/FungiTry"
 import ProtectedRoutes from "./Services/LoginSevice/ProtectedRoutes"
 
 const App = () => {
@@ -31,11 +34,14 @@ const App = () => {
           <Route path="/plants" element={<Plants />} />
           <Route path="/insects" element={<Insects />} />
           <Route path="/fungi" element={<Fungi />} />
-          <Route path="/try" element={<Try />} />
           <Route path="/users" element={<Users />} />
           <Route path="/roles" element={<Roles />} />
           <Route path="/our-roots" element={<OurRoots />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/animals-try" element={<AnimalsTry />} />
+          <Route path="/plants-try" element={<PlantsTry />} />
+          <Route path="/insects-try" element={<InsectsTry />} />
+          <Route path="/fungi-try" element={<FungiTry />} />
         </Route>
         <Route element={<ProtectedRoutes />}></Route>
       </Routes>
