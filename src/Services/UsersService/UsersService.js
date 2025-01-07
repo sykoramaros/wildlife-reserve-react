@@ -32,12 +32,20 @@ export const editUser = async (userId, user) => {
   try {
     const response = await axios.put(
       `https://wildlife-reserve.runasp.net/api/Users/${userId}`,
-      user
+      {
+        Name: user.name,
+        Email: user.email,
+        Password: user.password,
+      }
     )
     return response.data
   } catch (error) {
-    console.error("Error editing user:", error)
-    return null
+    if (error.response && error.response.data) {
+      console.error("Error editing user:", error.response.data)
+    } else {
+      console.error("Error editing user:", error)
+    }
+    return null 
   }
 }
 
@@ -46,9 +54,13 @@ export const deleteUser = async (userId) => {
     const response = await axios.delete(
       `https://wildlife-reserve.runasp.net/api/Users/${userId}`
     )
+    console.log("User deleted successfully:", response.data)
     return response.data
   } catch (error) {
-    console.error("Error deleting user:", error)
-    return null
+    console.error(
+      "Error deleting user:",
+      error.response ? error.response.data : error.message
+    )
+    return { success: false, error: error.message }
   }
 }

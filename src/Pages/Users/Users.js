@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
+import { useState, useEffect } from "react"
 import { getAllUsers } from "../../Services/UsersService/UsersService"
 import AddUserModal from "../../Components/AddUserModal/AddUserModal"
+import EditUserModal from "../../Components/EditUserModal/EditUserModal"
+import DeleteUserModal from "../../Components/DeleteUserModal/DeleteUserModal"
 import { createUser } from "../../Services/UsersService/UsersService"
+import { editUser } from "../../Services/UsersService/UsersService"
+import { deleteUser } from "../../Services/UsersService/UsersService"
 
 const Users = () => {
   const [users, setUsers] = useState([])
-  const [showModal, setShowModal] = useState(false)
+  const [showCreateModal, setShowCreateModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [userToEdit, setUserToEdit] = useState(null)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const [userToDelete, setUserToDelete] = useState(null)
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -16,20 +25,64 @@ const Users = () => {
   }, [])
 
   const handleCreateModal = () => {
-    setShowModal(true)
+    setShowCreateModal(true)
   }
 
-  const handleCloseModal = () => {
-    setShowModal(false)
+  const handleCloseCreateModal = () => {
+    setShowCreateModal(false)
   }
 
   const handleCreateUser = async (userData) => {
     const result = await createUser(userData)
     if (result.success) {
-      setUsers([...users, result.user]) // Přidání nového uživatele do seznamu
-      handleCloseModal()
+      setUsers([...users, result.user])
+      handleCloseCreateModal()
     } else {
       alert(result.error)
+    }
+  }
+
+  const handleEditUser = (user) => {
+    setUserToEdit(user)
+    setShowEditModal(true)
+  }
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false)
+    setUserToEdit(null)
+  }
+
+  const handleUpdateUser = async (updatedUser) => {
+    // Aktualizuje pouze name a email, ID zůstane nezměněno
+    const result = await editUser(updatedUser.id, updatedUser)
+    console.log("API response:", result)
+    if (result.success) {
+      setUsers(
+        users.map((user) => (user.id === updatedUser.id ? updatedUser : user))
+      )
+      handleCloseEditModal()
+    } else {
+      alert(result.error)
+    }
+  }
+
+  const handleOpenDeleteModal = (userId) => {
+    setShowDeleteModal(true)
+    setUserToDelete(userId)
+  }
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false)
+  }
+
+  const handleDeleteUser = async (userId) => {
+    const result = await deleteUser(userId)
+
+    if (result && result.success !== false) {
+      console.log("User deleted successfully")
+      setUsers(users.filter((user) => user.id !== userId))
+      handleCloseDeleteModal()
+    } else {
+      console.error("Failed to delete user:", result?.error || "Unknown error")
     }
   }
 
@@ -44,7 +97,7 @@ const Users = () => {
         >
           ＋ Add User
         </button>
-        <div className="row row-cols-1 row-cols-md-3 g-4">
+        <div className="row row-cols-1 row-cols-md-3 g-4 mt-3">
           {users.map((user) => (
             <div key={user.id} className="col">
               <div className="card border-primary mb-3 shadow-sm w-100 h-100">
@@ -58,26 +111,29 @@ const Users = () => {
                     <br />
                     Name: {user.userName}
                     <br />
+                    Email: {user.email}
+                    <br />
                   </p>
                 </div>
                 <div className="card-footer bg-transparent border-primary">
                   <div className="row">
                     <div className="col">
-                      <a
-                        href="#"
-                        className="btn btn-warning w-100 rounded-1"
+                      <button
                         type="button"
+                        className="btn btn-warning w-100 rounded-1"
+                        onClick={() => handleEditUser(user)}
                       >
                         Edit
-                      </a>
+                      </button>
                     </div>
                     <div className="col">
                       <form method="post">
-                        <input
+                        <button
                           className="btn btn-danger w-100 rounded-1"
-                          type="button"
-                          value="Delete"
-                        />
+                          onClick={() => handleOpenDeleteModal(user.id)}
+                        >
+                          Delete
+                        </button>
                       </form>
                     </div>
                   </div>
@@ -89,9 +145,24 @@ const Users = () => {
       </div>
 
       <AddUserModal
-        showModal={showModal}
-        setShowModal={setShowModal}
+        showModal={showCreateModal}
+        setShowModal={setShowCreateModal}
         handleCreateUser={handleCreateUser}
+      />
+
+      <EditUserModal
+        showModal={showEditModal}
+        setShowModal={setShowEditModal}
+        handleCloseModal={handleCloseEditModal}
+        userData={userToEdit}
+        handleUpdateUser={handleUpdateUser}
+      />
+
+      <DeleteUserModal
+        showModal={showDeleteModal}
+        handleCloseModal={handleCloseDeleteModal}
+        handleDeleteUser={handleDeleteUser}
+        userId={userToDelete}
       />
     </div>
   )
