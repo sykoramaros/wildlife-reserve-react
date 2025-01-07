@@ -12,7 +12,7 @@ const OurRoots = () => {
         </p>
         <div class="card my-3">
           <div class="card-body">
-            <h5 class="card-title text-primary">1. Our Roots Run Deep 🫚</h5>
+            <h5 class="card-title text-success">1. Our Roots Run Deep 🫚</h5>
             <p class="card-text">
               Our platform grows from a love for nature. We connect with
               external apps like iNaturalist to help you discover and document
@@ -22,7 +22,7 @@ const OurRoots = () => {
         </div>
         <div class="card my-3">
           <div class="card-body">
-            <h5 class="card-title text-primary">2. Data We Cultivate 🌱</h5>
+            <h5 class="card-title text-success">2. Data We Cultivate 🌱</h5>
             <p class="card-text">
               We keep a record of nature reserves and your contributions to help
               nurture global awareness. No invasive weeds here – only the
@@ -32,7 +32,7 @@ const OurRoots = () => {
         </div>
         <div class="card my-3">
           <div class="card-body">
-            <h5 class="card-title text-primary">3. Sharing the Seeds 🫘</h5>
+            <h5 class="card-title text-success">3. Sharing the Seeds 🫘</h5>
             <p class="card-text">
               Like a gentle breeze spreads pollen, your observations may inspire
               others. We might share non-personal data to enhance scientific
@@ -42,7 +42,7 @@ const OurRoots = () => {
         </div>
         <div class="card my-3">
           <div class="card-body">
-            <h5 class="card-title text-primary">
+            <h5 class="card-title text-success">
               4. Respecting Your Forest 🌳
             </h5>
             <p class="card-text">

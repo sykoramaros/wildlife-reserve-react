@@ -12,7 +12,7 @@ const LogoutButton = () => {
   }
 
   return (
-    <button onClick={handleLogout} className="btn btn-danger">
+    <button onClick={handleLogout} className="btn bg-danger text-white fs-5">
       Logout
     </button>
   )

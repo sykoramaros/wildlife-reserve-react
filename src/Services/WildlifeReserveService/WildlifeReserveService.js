@@ -21,7 +21,7 @@ export const getObservationsByMultipleFilters = async (filters) => {
     if (filters.place) queryParams.append("place", filters.place)
 
     const response = await axios.get(
-      `http://localhost:5272/api/Observation/byMultipleFilters?${queryParams.toString()}`
+      `https://wildlife-reserve.runasp.net/api/Observation/byMultipleFilters?${queryParams.toString()}`
     )
 
     return response.data
@@ -40,7 +40,7 @@ export const getObservationsByAnimalTaxonName = async (taxonName) => {
     const queryParams = new URLSearchParams()
     queryParams.append("taxonName", taxonName)
     const response = await axios.get(
-      `http://localhost:5272/api/Observation/byAnimalTaxonName?${queryParams.toString()}`
+      `https://wildlife-reserve.runasp.net/api/Observation/byAnimalTaxonName?${queryParams.toString()}`
     )
     return response.data
   } catch (error) {
@@ -58,7 +58,7 @@ export const getObservationsByPlantTaxonName = async (taxonName) => {
     const queryParams = new URLSearchParams()
     queryParams.append("taxonName", taxonName)
     const response = await axios.get(
-      `http://localhost:5272/api/Observation/byPlantTaxonName?${queryParams.toString()}`
+      `https://wildlife-reserve.runasp.net/api/Observation/byPlantTaxonName?${queryParams.toString()}`
     )
     return response.data
   } catch (error) {
@@ -76,7 +76,7 @@ export const getObservationsByInsectTaxonName = async (taxonName) => {
     const queryParams = new URLSearchParams()
     queryParams.append("taxonName", taxonName)
     const response = await axios.get(
-      `http://localhost:5272/api/Observation/byInsectTaxonName?${queryParams.toString()}`
+      `https://wildlife-reserve.runasp.net/api/Observation/byInsectTaxonName?${queryParams.toString()}`
     )
     return response.data
   } catch (error) {
@@ -94,7 +94,7 @@ export const getObservationsByFungiTaxonName = async (taxonName) => {
     const queryParams = new URLSearchParams()
     queryParams.append("taxonName", taxonName)
     const response = await axios.get(
-      `http://localhost:5272/api/Observation/byFungiTaxonName?${queryParams.toString()}`
+      `https://wildlife-reserve.runasp.net/api/Observation/byFungiTaxonName?${queryParams.toString()}`
     )
     return response.data
   } catch (error) {

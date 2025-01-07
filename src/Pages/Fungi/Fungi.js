@@ -70,7 +70,7 @@ const Fungi = () => {
   // Funkce pro renderování formuláře pro vyhledávání
   const renderSearchInput = () => (
     <div className="container">
-      <h1 className="text-center text-primary display-4 mt-4">Fungi</h1>
+      <h1 className="text-center text-success display-4 mt-4">Fungi</h1>
       <SearchInput
         value={inputData}
         onChange={handleInputChange}

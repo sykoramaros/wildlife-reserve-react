@@ -3,7 +3,7 @@ import axios from "axios"
 const logout = async () => {
   try {
     await axios.post(
-      "http://localhost:5272/api/Account/logout",
+      "https://wildlife-reserve.runasp.net/api/Account/logout",
       {},
       { withCredentials: true }
     )

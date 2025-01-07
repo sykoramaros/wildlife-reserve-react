@@ -9,7 +9,12 @@ const Navbar = () => {
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
           <a class="navbar-brand fs-3 text-secondary" href="#">
-            Wildlife Reserve
+            <img
+              src="./Photos/LogoImage.png"
+              alt=""
+              width="auto"
+              height="50px"
+            />
           </a>
           <button
             class="navbar-toggler"
@@ -26,7 +31,7 @@ const Navbar = () => {
             <ul class="navbar-nav ms-auto fs-5">
               <li class="nav-item">
                 <Link
-                  class="nav-link active text-info"
+                  class="nav-link active text-success"
                   aria-current="page"
                   to={"/"}
                 >
@@ -119,7 +124,7 @@ const Navbar = () => {
                   Roles
                 </Link>
               </li>
-              <li class="nav-item">
+              <li class="nav-item me-3">
                 <Link class="nav-link" to={"/our-roots"}>
                   OuRoots
                 </Link>
