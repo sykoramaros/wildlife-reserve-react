@@ -1,4 +1,4 @@
-const DeleteUserModal = ({
+const DeleteModal = ({
   showModal,
   handleCloseModal,
   handleDeleteUser,
@@ -48,4 +48,4 @@ const DeleteUserModal = ({
   )
 }
 
-export default DeleteUserModal
+export default DeleteModal

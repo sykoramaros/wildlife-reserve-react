@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import SearchInput from "../../Components/SearchInput/SearchInput"
 import SearchBody from "../../Components/SearchBody/SearchBody"
+import { getObservationsByMultipleFilters } from "../../Services/WildlifeReserveService/WildlifeReserveService"
 
 const Animals = () => {
   // Stavové proměnné pro sledování pozorování, vstupních dat a celkových výsledků
@@ -14,10 +15,20 @@ const Animals = () => {
   })
 
   // Funkce pro získání dat (tato část bude odpovědná za načítání dat)
-  const fetchObservations = async () => {
+  // const fetchObservations = async () => {
+  //   try {
+  //     const response = await fetch("API_URL_HERE") // Nahraďte skutečnou URL
+  //     const data = await response.json()
+  //     setObservations(data.observations || [])
+  //     setTotalResults(data.totalResults || 0)
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error)
+  //   }
+  // }
+
+  const fetchObservations = async (filters) => {
     try {
-      const response = await fetch("API_URL_HERE") // Nahraďte skutečnou URL
-      const data = await response.json()
+      const data = await getObservationsByMultipleFilters(filters)
       setObservations(data.observations || [])
       setTotalResults(data.totalResults || 0)
     } catch (error) {

@@ -1,10 +1,12 @@
 import axios from "axios"
 
+const baseUrl = "https://wildlife-reserve.runasp.net/api"
+// const baseUrl = "http://localhost:5272/api"
+// const baseUrl = "https://localhost:7105/api"
+
 export const getAllUsers = async () => {
   try {
-    const response = await axios.get(
-      "https://wildlife-reserve.runasp.net/api/Users"
-    )
+    const response = await axios.get(baseUrl + "/Users/list")
     return response.data
   } catch (error) {
     console.error("Error fetching users:", error)
@@ -12,12 +14,31 @@ export const getAllUsers = async () => {
   }
 }
 
+export const getUserByEmail = async (email) => {
+  try {
+    const response = await axios.get(baseUrl + `/Users/getByEmail/${email}`)
+    return response.data
+  } catch (error) {
+    console.error("Error fetching user:", error)
+    return null
+  }
+}
+
+export const getUserById = async (id) => {
+  try {
+    const response = await axios.get(baseUrl + `/Users/getBy/${id}`)
+    console.log("response.data:", response.data)
+    return response.data
+  } catch (error) {
+    console.log("userId:", id)
+    console.error("Error fetching user:", error)
+    return null
+  }
+}
+
 export const createUser = async (user) => {
   try {
-    const response = await axios.post(
-      "https://wildlife-reserve.runasp.net/api/Users",
-      user
-    )
+    const response = await axios.post(baseUrl + "/Users/add", user)
     if (response.status === 201) {
       return { success: true, user: response.data }
     }
@@ -31,29 +52,27 @@ export const createUser = async (user) => {
 export const editUser = async (userId, user) => {
   try {
     const response = await axios.put(
-      `https://wildlife-reserve.runasp.net/api/Users/${userId}`,
+      baseUrl + `/Users/edit/${userId}`,
       {
         Name: user.name,
         Email: user.email,
         Password: user.password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json", // Nastavuje typ dat jako JSON
+        },
       }
     )
     return response.data
   } catch (error) {
-    if (error.response && error.response.data) {
-      console.error("Error editing user:", error.response.data)
-    } else {
-      console.error("Error editing user:", error)
-    }
-    return null 
+    throw error
   }
 }
 
 export const deleteUser = async (userId) => {
   try {
-    const response = await axios.delete(
-      `https://wildlife-reserve.runasp.net/api/Users/${userId}`
-    )
+    const response = await axios.delete(baseUrl + `/Users/delete/${userId}`)
     console.log("User deleted successfully:", response.data)
     return response.data
   } catch (error) {

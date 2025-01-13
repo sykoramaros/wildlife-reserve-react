@@ -8,7 +8,7 @@ const Navbar = () => {
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand fs-3 text-secondary" href="#">
+          <a class="navbar-brand fs-3 text-secondary" href="/">
             <img
               src="./Photos/LogoImage.png"
               alt=""
@@ -38,26 +38,19 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              {/* <li class="nav-item">
-                <Link class="nav-link" to={"/about"}>
-                  Privacy
-                </Link>
-              </li> */}
               <li class="nav-item">
                 <Link class="nav-link" to={"/reserves"}>
                   Reserves
                 </Link>
               </li>
               <li class="nav-item dropdown">
-                <a
+                <button
                   class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Observe
-                </a>
+                </button>
                 <ul class="dropdown-menu">
                   <li>
                     <Link class="dropdown-item" to={"/animals"}>
@@ -82,15 +75,13 @@ const Navbar = () => {
                 </ul>
               </li>
               <li class="nav-item dropdown">
-                <a
+                <button
                   class="nav-link dropdown-toggle"
-                  href="#"
-                  role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
                   Try
-                </a>
+                </button>
                 <ul class="dropdown-menu">
                   <li>
                     <Link class="dropdown-item" to={"/animals-try"}>

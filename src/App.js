@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { HashRouter, Routes, Route } from "react-router-dom"
 import "./App.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min"
@@ -12,7 +12,9 @@ import Plants from "./Pages/Plants/Plants"
 import Insects from "./Pages/Insects/Insects"
 import Fungi from "./Pages/Fungi/Fungi"
 import Users from "./Pages/Users/Users"
+import UserEdit from "./Pages/Users/UserEdit"
 import Roles from "./Pages/Roles/Roles"
+import EditRole from "./Pages/Roles/EditRole"
 import OurRoots from "./Pages/OurRoots/OurRoots"
 import AnimalsTry from "./Pages/Try/AnimalsTry"
 import PlantsTry from "./Pages/Try/PlantsTry"
@@ -22,7 +24,7 @@ import ProtectedRoutes from "./Services/LoginSevice/ProtectedRoutes"
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* Nechranene cesty na stranky */}
 
@@ -35,7 +37,9 @@ const App = () => {
           <Route path="/insects" element={<Insects />} />
           <Route path="/fungi" element={<Fungi />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/users/edit/:id" element={<UserEdit />} />
           <Route path="/roles" element={<Roles />} />
+          <Route path="/roles/edit/:id" element={<EditRole />} />
           <Route path="/our-roots" element={<OurRoots />} />
           <Route path="/login" element={<Login />} />
           <Route path="/animals-try" element={<AnimalsTry />} />
@@ -45,7 +49,7 @@ const App = () => {
         </Route>
         <Route element={<ProtectedRoutes />}></Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

@@ -11,7 +11,7 @@ const Home = () => {
             </h1>
           </div>
           <div className="col d-flex justify-content-center">
-            <img className="img-fluid w-50" src="./Photos/HomeImage.png" alt="" />
+            <img src="./Photos/HomeImage.png" className="img-fluid" />
           </div>
         </div>
       </div>

@@ -1,34 +1,22 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
-const EditUserModal = ({
-  showModal,
-  setShowModal,
-  handleCloseModal,
-  userData,
-  handleUpdateUser,
-}) => {
+const AddModal = ({ showModal, setShowModal, handleCreateUser }) => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  useEffect(() => {
-    if (userData) {
-      setName(userData.userName)
-      setEmail(userData.email)
-      setPassword("")
-    }
-  }, [userData])
+  const handleNameType = (e) => setName(e.target.value)
+  const handleEmailType = (e) => setEmail(e.target.value)
+  const handlePasswordType = (e) => setPassword(e.target.value)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const updatedUser = {
-      id: userData.id,
-      name,
-      email,
-      password: password || "",
-    }
-    console.log(updatedUser)
-    handleUpdateUser(updatedUser)
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const userData = { name, email, password }
+    handleCreateUser(userData) // Předání dat zpět do `Users.js`
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(false)
   }
 
   if (!showModal) return null
@@ -38,7 +26,7 @@ const EditUserModal = ({
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Edit User</h5>
+            <h5 className="modal-title">Add New User</h5>
             <button
               type="button"
               className="btn-close"
@@ -55,7 +43,7 @@ const EditUserModal = ({
                   className="form-control"
                   id="name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={handleNameType}
                   required
                 />
               </div>
@@ -66,12 +54,23 @@ const EditUserModal = ({
                   className="form-control"
                   id="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleEmailType}
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-primary mt-3">
-                Update User
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={password}
+                  onChange={handlePasswordType}
+                  required
+                />
+              </div>
+              <button type="submit" className="btn btn-success mt-3">
+                Create User
               </button>
             </form>
           </div>
@@ -90,4 +89,4 @@ const EditUserModal = ({
   )
 }
 
-export default EditUserModal
+export default AddModal

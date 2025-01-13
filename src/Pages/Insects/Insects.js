@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import SearchInput from "../../Components/SearchInput/SearchInput"
 import SearchBody from "../../Components/SearchBody/SearchBody"
+import { getObservationsByMultipleFilters } from "../../Services/WildlifeReserveService/WildlifeReserveService"
 
 const Insects = () => {
   // Stavové proměnné pro pozorování, vstupní data a celkové výsledky
@@ -13,17 +14,27 @@ const Insects = () => {
     day: null,
   })
 
-  // Funkce pro načítání dat z API
-  const fetchObservations = async () => {
-    try {
-      const response = await fetch("API_URL_HERE") // Nahraďte skutečnou URL API
-      const data = await response.json()
-      setObservations(data.observations || [])
-      setTotalResults(data.totalResults || 0)
-    } catch (error) {
-      console.error("Error fetching data:", error)
+  // // Funkce pro načítání dat z API
+  // const fetchObservations = async () => {
+  //   try {
+  //     const response = await fetch("API_URL_HERE") // Nahraďte skutečnou URL API
+  //     const data = await response.json()
+  //     setObservations(data.observations || [])
+  //     setTotalResults(data.totalResults || 0)
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error)
+  //   }
+  // }
+
+  const fetchObservations = async (filters) => {
+      try {
+        const data = await getObservationsByMultipleFilters(filters)
+        setObservations(data.observations || [])
+        setTotalResults(data.totalResults || 0)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      }
     }
-  }
 
   useEffect(() => {
     fetchObservations() // Načítání dat při načtení komponenty

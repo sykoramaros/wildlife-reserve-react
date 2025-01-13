@@ -6,8 +6,7 @@ const Reserves = () => {
       <img
         className="img-fluid"
         style={{ minHeight: "100%", minWidth: "100%" }}
-        src="./Photos/Reserve.jpg"
-        alt=""
+        src="./Photos/Reserve.png"
       />
     </div>
   )
