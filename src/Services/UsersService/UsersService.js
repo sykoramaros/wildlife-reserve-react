@@ -56,7 +56,6 @@ export const editUser = async (userId, user) => {
       {
         Name: user.name,
         Email: user.email,
-        Password: user.password,
       },
       {
         headers: {

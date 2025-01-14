@@ -14,7 +14,7 @@ const Edit = () => {
     event.preventDefault()
     try {
       const updatedUser = { name: nameToEdit, email: emailToEdit }
-      await editUser(emailToEdit, updatedUser)
+      await editUser(user.id, updatedUser)
       console.log("User updated:", updatedUser)
       navigate("/users")
     } catch (error) {
