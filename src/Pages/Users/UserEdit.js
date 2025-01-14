@@ -1,58 +1,25 @@
 import React from "react"
-import { Link, useParams, useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
-import { getUserById, editUser } from "../../Services/UsersService/UsersService"
+import { Link, useNavigate, useLocation } from "react-router-dom"
+import { useState } from "react"
+import { editUser } from "../../Services/UsersService/UsersService"
 
 const Edit = () => {
-  const { userId: id } = useParams()
   const navigate = useNavigate()
-  const [userData, setUserData] = useState(null)
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  // const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    console.log("userId:", id) // Zkontrolujte hodnotu userId před voláním API
-
-    const fetchUser = async () => {
-      try {
-        const data = await getUserById(id)
-        console.log("Nactena data: ", data)
-        if (data) {
-          setName(data.name)
-          setEmail(data.email)
-        } else {
-          console.error("Uživatel nebyl nalezen")
-        }
-      } catch (error) {
-        console.error("Chyba při načítání uživatele:", error)
-      } finally {
-        setLoading(false) // Ukončení načítání
-      }
-    }
-    if (id) {
-      fetchUser() // Zavoláme API jen pokud je userId definováno
-    } else {
-      console.error("userId není definováno")
-      setLoading(false) // Ukončení načítání, pokud není userId
-    }
-  }, [id])
+  const location = useLocation()
+  const user = location.state?.user
+  const [nameToEdit, setNameToEdit] = useState(user?.userName || "")
+  const [emailToEdit, setEmailToEdit] = useState(user?.email || "")
 
   const handleSumbit = async (event) => {
     event.preventDefault()
     try {
-      const updatedUser = { name, email }
-      await editUser(id, updatedUser)
+      const updatedUser = { name: nameToEdit, email: emailToEdit }
+      await editUser(emailToEdit, updatedUser)
       console.log("User updated:", updatedUser)
-      navigate.push("/users")
+      navigate("/users")
     } catch (error) {
       console.error("Error updating user:", error)
     }
-  }
-
-  if (loading) {
-    return <div className="container">Loading...</div>
   }
 
   return (
@@ -70,8 +37,8 @@ const Edit = () => {
                 type="text"
                 className="form-control"
                 id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={nameToEdit}
+                onChange={(e) => setNameToEdit(e.target.value)}
                 required
               />
             </div>
@@ -81,8 +48,8 @@ const Edit = () => {
                 type="email"
                 className="form-control"
                 id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={emailToEdit}
+                onChange={(e) => setEmailToEdit(e.target.value)}
                 required
               />
             </div>

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import {
   getAllUsers, // Import funkce pro získání všech uživatelů
   createUser, // Import funkce pro vytvoření nového uživatele
+  getUserByEmail, // Import funkce pro získání uživatele podle e-mailu
   deleteUser, // Import funkce pro smazání uživatele
 } from "../../Services/UsersService/UsersService"
 import AddModal from "../../Components/UsersModals/AddModal/AddModal" // Import komponenty pro modal pro přidání uživatele
@@ -15,6 +16,7 @@ const Users = () => {
   const [showCreateModal, setShowCreateModal] = useState(false) // Stav pro zobrazení modal pro přidání uživatele
   const [showDeleteModal, setShowDeleteModal] = useState(false) // Stav pro zobrazení modal pro smazání uživatele
   const [userToDelete, setUserToDelete] = useState(null) // Stav pro uživatele k smazání
+  const [userToEdit, setUserToEdit] = useState(null) // Stav pro uživatele k editaci
 
   // useEffect hook, který se spustí při načtení komponenty a získá všechny uživatele
   useEffect(() => {
@@ -25,21 +27,22 @@ const Users = () => {
     fetchUsers() // Zavolá funkci pro načtení uživatelů při načtení komponenty
   }, [])
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      const fetchedUser = await getUserByEmail(userToEdit.email) // Načte uživatele podle e-mailu
+      setUserToEdit(fetchedUser) // Nastaví uživatele do stavu
+    }
+    if (userToEdit) {
+      fetchUser() // Zavolá funkci pro načtení uživatele podle e-mailu
+    }
+  }, [userToEdit])
+
   const navigate = useNavigate()
 
   // Funkce pro otevření modalu pro přidání uživatele
   const handleOpenCreateModal = () => setShowCreateModal(true)
   // Funkce pro zavření modalu pro přidání uživatele
   const handleCloseCreateModal = () => setShowCreateModal(false)
-  // Funkce pro otevření modalu pro smazání uživatele
-  const handleOpenDeleteModal = (userId) => {
-    setShowDeleteModal(true) // Otevře modal pro smazání
-    setUserToDelete(userId) // Nastaví ID uživatele k smazání
-  }
-  // Funkce pro zavření modalu pro smazání uživatele
-  const handleCloseDeleteModal = () => setShowDeleteModal(false)
-
-  // Funkce pro vytvoření nového uživatele
   const handleCreateUser = async (userData) => {
     const result = await createUser(userData) // Zavolá API pro vytvoření uživatele
     if (result.success) {
@@ -50,6 +53,15 @@ const Users = () => {
     }
   }
 
+  // Funkce pro otevření modalu pro smazání uživatele
+  const handleOpenDeleteModal = (userId) => {
+    setShowDeleteModal(true) // Otevře modal pro smazání
+    setUserToDelete(userId) // Nastaví ID uživatele k smazání
+  }
+  // Funkce pro zavření modalu pro smazání uživatele
+  const handleCloseDeleteModal = () => {
+    setShowDeleteModal(false)
+  }
   // Funkce pro smazání uživatele
   const handleDeleteUser = async (userId) => {
     const result = await deleteUser(userId) // Zavolá API pro smazání uživatele
@@ -77,8 +89,8 @@ const Users = () => {
           ＋ Add User
         </button>
         <div className="row row-cols-1 row-cols-md-3 g-4 mt-3">
-          {users.map((user) => (
-            <div key={user.id} className="col">
+          {users.map((user, index) => (
+            <div key={index} className="col">
               <div className="card border-primary mb-3 shadow-sm w-100 h-100">
                 <h5 className="card-header bg-transparent border-primary">
                   Info
@@ -99,6 +111,7 @@ const Users = () => {
                     <div className="col">
                       <Link
                         to={`/users/edit/${user.id}`}
+                        state={{ user: user }}
                         type="button"
                         className="btn btn-warning w-100 rounded-1"
                       >

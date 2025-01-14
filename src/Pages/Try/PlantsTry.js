@@ -24,7 +24,7 @@ const PlantsTry = () => {
 
   return (
     <div>
-      <h1 className="text-center text-success display-4 mt-4">PlantsPlants🌱</h1>
+      <h1 className="text-center text-success display-4 mt-4">Plants🌱</h1>
       <div className="container">
         <div className="row row-cols-1 justify-content-center align-items-center mt-3">
           <div className="w-75">
