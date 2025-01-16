@@ -1,11 +1,12 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
-import LogoutService from "../../Services/LoginSevice/LogoutService"
+import { logout } from "../../Services/AccountService/AccountService"
 
 const LogoutButton = () => {
   const navigate = useNavigate()
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    await logout()
     localStorage.removeItem("token")
     alert("Logout successful")
     navigate("/login")
