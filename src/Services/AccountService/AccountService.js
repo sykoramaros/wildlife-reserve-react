@@ -1,10 +1,11 @@
 import axios from "axios"
+import { jwtDecode } from "jwt-decode"
 
 export const login = async ({ username, password }) => {
   try {
     // Přímé volání API pomocí axios
     const response = await axios.post(
-      "https://wildlife-reserve.runasp.net/api/Account/login",
+      "https://wildlife-reserve.runasp.net/api/Account/chatgpt-jwt-login",
       {
         username: username,
         password: password,
@@ -15,12 +16,16 @@ export const login = async ({ username, password }) => {
     )
     // Uložení tokenu do localStorage ve frontend prohlizeci (propojeni s ProtectedRoutes.js)
     localStorage.setItem("token", response.data.token)
+    const decodedToken = jwtDecode(response.data.token)
+    console.log("Decoded Token:", decodedToken)
+
     alert("Login successful")
     console.log("response.data:", response.data)
     return {
       success: true,
       message: response.data.message,
       returnUrl: response.data.returnUrl || "/",
+      user: decodedToken,
     } // Vrácení úspěchu
   } catch (error) {
     console.error(

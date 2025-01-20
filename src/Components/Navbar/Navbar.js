@@ -1,9 +1,19 @@
 import React from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { getUserRole } from "../../Services/AuthenticationService/AuthenticationService"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import LogoutButton from "../LogoutButton/LogoutButton"
 
 const Navbar = () => {
+  const [role, setRole] = useState(null)
+
+  useEffect(() => {
+    const userRole = getUserRole()
+    console.log("User role:", userRole)
+    setRole(userRole)
+  }, [])
+
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -38,83 +48,88 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/reserves"}>
-                  Reserves
-                </Link>
-              </li>
-              <li class="nav-item dropdown">
-                <button
-                  class="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Observe
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" to={"/animals"}>
-                      Animals
+              {/* Zobrazit pouze pokud je uživatel Admin */}
+              {role === "Admin" && (
+                <>
+                  <li class="nav-item">
+                    <Link class="nav-link" to={"/reserves"}>
+                      Reserves
                     </Link>
                   </li>
-                  <li>
-                    <Link class="dropdown-item" to={"/plants"}>
-                      Plants
+                  <li class="nav-item dropdown">
+                    <button
+                      class="nav-link dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Observe
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <Link class="dropdown-item" to={"/animals"}>
+                          Animals
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" to={"/plants"}>
+                          Plants
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" to={"/insects"}>
+                          Insects
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" to={"/fungi"}>
+                          Fungi
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <button
+                      class="nav-link dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Try
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <Link class="dropdown-item" to={"/animals-try"}>
+                          AnimalsTry
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" to={"/plants-try"}>
+                          PlantsTry
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" to={"/insects-try"}>
+                          InsectsTry
+                        </Link>
+                      </li>
+                      <li>
+                        <Link class="dropdown-item" to={"/fungi-try"}>
+                          FungiTry
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <Link class="nav-link" to={"/users"}>
+                      Users
                     </Link>
                   </li>
-                  <li>
-                    <Link class="dropdown-item" to={"/insects"}>
-                      Insects
+                  <li class="nav-item">
+                    <Link class="nav-link" to={"/roles"}>
+                      Roles
                     </Link>
                   </li>
-                  <li>
-                    <Link class="dropdown-item" to={"/fungi"}>
-                      Fungi
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <button
-                  class="nav-link dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Try
-                </button>
-                <ul class="dropdown-menu">
-                  <li>
-                    <Link class="dropdown-item" to={"/animals-try"}>
-                      AnimalsTry
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to={"/plants-try"}>
-                      PlantsTry
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to={"/insects-try"}>
-                      InsectsTry
-                    </Link>
-                  </li>
-                  <li>
-                    <Link class="dropdown-item" to={"/fungi-try"}>
-                      FungiTry
-                    </Link>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/users"}>
-                  Users
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to={"/roles"}>
-                  Roles
-                </Link>
-              </li>
+                </>
+              )}
               <li class="nav-item me-3">
                 <Link class="nav-link" to={"/our-roots"}>
                   OuRoots
