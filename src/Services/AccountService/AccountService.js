@@ -13,7 +13,7 @@ export const login = async ({ username, password }) => {
         withCredentials: true, // Zajistí přenos cookies (pokud je potřeba)
       }
     )
-    // Uložení tokenu do localStorage
+    // Uložení tokenu do localStorage ve frontend prohlizeci (propojeni s ProtectedRoutes.js)
     localStorage.setItem("token", response.data.token)
     alert("Login successful")
     console.log("response.data:", response.data)
@@ -36,11 +36,9 @@ export const login = async ({ username, password }) => {
 
 export const logout = async () => {
   try {
-    await axios.post(
-      "https://wildlife-reserve.runasp.net/api/Account/logout",
-      {},
-      { withCredentials: true }
-    )
+    await axios.post("https://wildlife-reserve.runasp.net/api/Account/logout", {
+      withCredentials: true,
+    })
     return { success: true, message: "Logout successful" }
   } catch (error) {
     return {

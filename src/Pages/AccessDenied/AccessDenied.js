@@ -1,6 +1,6 @@
 import React from "react"
 
-const AccessDebnied = () => {
+const AccessDenied = () => {
   return (
     <div>
       <div className="container">
@@ -18,7 +18,7 @@ const AccessDebnied = () => {
           <a
             className="d-flex justify-content-center m-auto btn btn-lg btn-secondary"
             type="button"
-            href="/"
+            href="/home"
           >
             Go back to homepage
           </a>
@@ -28,4 +28,4 @@ const AccessDebnied = () => {
   )
 }
 
-export default AccessDebnied
+export default AccessDenied

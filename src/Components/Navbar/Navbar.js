@@ -8,7 +8,7 @@ const Navbar = () => {
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand fs-3 text-secondary" href="/">
+          <a class="navbar-brand fs-3 text-secondary" href="/home">
             <img
               src="./Photos/LogoImage.png"
               alt=""
@@ -33,7 +33,7 @@ const Navbar = () => {
                 <Link
                   class="nav-link active text-success"
                   aria-current="page"
-                  to={"/"}
+                  to={"/home"}
                 >
                   Home
                 </Link>

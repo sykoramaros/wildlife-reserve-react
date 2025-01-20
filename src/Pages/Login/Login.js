@@ -16,9 +16,12 @@ const Login = () => {
       const result = await login({ username, password }) // Předání navigate jako parametru
       if (result.success) {
         // Přesměrování po úspěšném přihlášení
-        navigate(result.returnUrl || "/")
+        // navigate(result.returnUrl || "/home")
+        navigate("/home")
         // window.location.href = "www.google.com"
-        // console.log(username + "\n" + password + "\n" + result.returnUrl)
+        console.log(
+          username + "\n" + password + "\n" + result.returnUrl + "\n"
+        )
       } else {
         // Zpracování chyby při přihlášení
         setErrorMessage("Invalid username or password")

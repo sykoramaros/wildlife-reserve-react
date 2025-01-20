@@ -1,4 +1,5 @@
 import axios from "axios"
+import { authAxios } from "../AuthenticationService/AuthenticationService"
 
 const baseUrl = "https://wildlife-reserve.runasp.net/api"
 // const baseUrl = "http://localhost:5272/api"
@@ -7,7 +8,7 @@ const baseUrl = "https://wildlife-reserve.runasp.net/api"
 // Získání seznamu všech rolí
 export const getRoles = async () => {
   try {
-    const response = await axios.get(baseUrl + "/Roles/list")
+    const response = await authAxios("get", baseUrl + "/Roles/list")
     return response.data
   } catch (error) {
     console.error("Error fetching roles:", error)
