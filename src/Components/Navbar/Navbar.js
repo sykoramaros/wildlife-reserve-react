@@ -48,76 +48,108 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              {/* Zobrazit pouze pokud je uživatel Admin */}
-              {role === "Admin" && (
-                <>
-                  <li class="nav-item">
-                    <Link class="nav-link" to={"/reserves"}>
-                      Reserves
-                    </Link>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <button
-                      class="nav-link dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Observe
-                    </button>
-                    <ul class="dropdown-menu">
+              <li class="nav-item">
+                <Link class="nav-link" to={"/reserves"}>
+                  Reserves
+                </Link>
+              </li>
+              <li class="nav-item dropdown">
+                <button
+                  class="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Observe
+                </button>
+                <ul class="dropdown-menu">
+                  {(role === "Admin" || role === "Zoologist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/animals"}>
                           Animals
                         </Link>
                       </li>
+                    </>
+                  )}
+                  {(role === "Admin" || role === "Botanist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/plants"}>
                           Plants
                         </Link>
                       </li>
+                    </>
+                  )}
+                  {(role === "Admin" || role === "Entomologist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/insects"}>
                           Insects
                         </Link>
                       </li>
+                    </>
+                  )}
+                  {(role === "Admin" || role === "Mycologist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/fungi"}>
                           Fungi
                         </Link>
                       </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <button
-                      class="nav-link dropdown-toggle"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Try
-                    </button>
-                    <ul class="dropdown-menu">
+                    </>
+                  )}
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <button
+                  class="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Try
+                </button>
+                <ul class="dropdown-menu">
+                  {(role === "Admin" || role === "Zoologist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/animals-try"}>
                           AnimalsTry
                         </Link>
                       </li>
+                    </>
+                  )}
+                  {(role === "Admin" || role === "Botanist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/plants-try"}>
                           PlantsTry
                         </Link>
                       </li>
+                    </>
+                  )}
+                  {(role === "Admin" || role === "Entomologist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/insects-try"}>
                           InsectsTry
                         </Link>
                       </li>
+                    </>
+                  )}
+                  {(role === "Admin" || role === "Mycologist") && (
+                    <>
                       <li>
                         <Link class="dropdown-item" to={"/fungi-try"}>
                           FungiTry
                         </Link>
                       </li>
-                    </ul>
-                  </li>
+                    </>
+                  )}
+                </ul>
+              </li>
+              {/* Zobrazit pouze pokud je uživatel Admin nebo Director */}
+              {(role === "Admin" || role === "Director") && (
+                <>
                   <li class="nav-item">
                     <Link class="nav-link" to={"/users"}>
                       Users
