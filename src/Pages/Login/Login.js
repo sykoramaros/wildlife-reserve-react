@@ -1,40 +1,46 @@
 import React from "react"
 import { useState } from "react"
-import { data, useNavigate } from "react-router-dom"
-import { login } from "../../Services/AccountService/AccountService"
+import { useNavigate } from "react-router-dom"
+import AccountService from "../../Services/AccountService/AccountService"
 
 const Login = () => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate() // Hook useNavigate uvnitř komponenty
 
   const handleLogin = async (event) => {
     event.preventDefault()
+    setIsLoading(true)
 
     try {
-      const result = await login({ username, password }) // Předání navigate jako parametru
+      console.log("Logging in...")
+      const result = await AccountService.login({
+        username: username.trim(),
+        password: password,
+      })
+      console.log("Login result:", result)
       if (result.success) {
-        // Přesměrování po úspěšném přihlášení
+        console.log("Login successful, redirecting to:", result.returnUrl)
         // navigate(result.returnUrl || "/home")
         navigate("/home")
-        // window.location.href = "www.google.com"
-        console.log(
-          username + "\n" + password + "\n" + result.returnUrl + "\n"
-        )
       } else {
-        // Zpracování chyby při přihlášení
-        setErrorMessage("Invalid username or password")
+        console.log("Login failed:", errorMessage)
+        setErrorMessage(result.message)
       }
     } catch (error) {
-      console.error("Login failed:", error)
+      console.error("Login error:", error)
       setErrorMessage("An error occured during login. Please try again.")
+    } finally {
+      setIsLoading(false) // Ukončení loading animace
     }
   }
 
   return (
     <div>
       <div className="container">
+        <h1 className="text-center text-danger display-4 mt-4">Login</h1>
         <form className="w-75 mt-5 mx-auto" onSubmit={handleLogin}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
@@ -47,6 +53,7 @@ const Login = () => {
               name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              disabled={isLoading}
               required
             />
           </div>
@@ -61,6 +68,7 @@ const Login = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              disabled={isLoading}
               required
             />
           </div>
@@ -69,8 +77,23 @@ const Login = () => {
               {errorMessage}
             </div>
           )}
-          <button type="submit" className="btn btn-primary">
-            Submit
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <span
+                  className="spinner-border spinner-border-sm me-2"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Loading...
+              </>
+            ) : (
+              "Login"
+            )}
           </button>
           <p id="error-message" className="text-danger"></p>
         </form>

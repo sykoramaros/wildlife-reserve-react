@@ -18,9 +18,9 @@ const AccessDenied = () => {
           <a
             className="d-flex justify-content-center m-auto btn btn-lg btn-secondary"
             type="button"
-            href="/home"
+            href="/login"
           >
-            Go back to homepage
+            Go back to login
           </a>
         </div>
       </div>

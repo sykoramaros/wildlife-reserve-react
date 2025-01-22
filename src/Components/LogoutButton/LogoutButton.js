@@ -8,7 +8,7 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     await logout()
     localStorage.removeItem("token")
-    alert("Logout successful")
+    // alert("Logout successful")
     navigate("/login")
   }
 

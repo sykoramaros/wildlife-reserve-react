@@ -10,7 +10,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const userRole = getUserRole()
-    console.log("User role:", userRole)
     setRole(userRole)
   }, [])
 

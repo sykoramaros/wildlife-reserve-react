@@ -27,44 +27,132 @@ const App = () => {
   return (
     <HashRouter>
       <Routes>
-        {/* Nechranene trasy*/}
+        {/* Verejne trasy*/}
         <Route index element={<Login />} />
-        <Route path="*" element={<AccessDenied />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/access-denied" element={<AccessDenied />} />
         <Route path="/" element={<Layout />}>
+          <Route path="/our-roots" element={<OurRoots />} />
+          <Route path="/reserves" element={<Reserves />} />
+
+          {/* Layout s chranenymi trasami */}
           <Route path="/home" element={<Home />} />
 
-          {/* Chranene trasy */}
-
+          {/* Admin trasy */}
           <Route
-            path="/reserves"
+            path="/users"
             element={
               <ProtectedRoute roles={["Admin"]}>
-                <Reserves />
+                <Users />
               </ProtectedRoute>
             }
           />
 
-          <Route path="/animals" element={<Animals />} />
-          <Route path="/plants" element={<Plants />} />
-          <Route path="/insects" element={<Insects />} />
-          <Route path="/fungi" element={<Fungi />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/users/edit/:id" element={<UserEdit />} />
-          <Route path="/roles" element={<Roles />} />
-          <Route path="/roles/edit/:id" element={<EditRole />} />
-          <Route path="/animals-try" element={<AnimalsTry />} />
-          <Route path="/plants-try" element={<PlantsTry />} />
-          <Route path="/insects-try" element={<InsectsTry />} />
-          <Route path="/fungi-try" element={<FungiTry />} />
           <Route
-            path="/our-roots"
+            path="/users/edit/:id"
             element={
               <ProtectedRoute roles={["Admin"]}>
-                <OurRoots />{" "}
+                <UserEdit />
               </ProtectedRoute>
             }
           />
-          <Route element={<ProtectedRoute />}></Route>
+
+          <Route
+            path="/roles"
+            element={
+              <ProtectedRoute roles={["Admin"]}>
+                <Roles />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/roles/edit/:id"
+            element={
+              <ProtectedRoute roles={["Admin"]}>
+                <EditRole />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Chranene trasy pro prihlasene Zoology */}
+          <Route
+            path="/animals"
+            element={
+              <ProtectedRoute roles={["Zoologist", "Admin"]}>
+                <Animals />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/animals-try"
+            element={
+              <ProtectedRoute roles={["Zoologist", "Admin"]}>
+                <AnimalsTry />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Chranene trasy pro prihlasene Botaniky */}
+          <Route
+            path="/plants"
+            element={
+              <ProtectedRoute roles={["Botanist", "Admin"]}>
+                <Plants />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/plants-try"
+            element={
+              <ProtectedRoute roles={["Botanist", "Admin"]}>
+                <PlantsTry />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Chranene trasy pro prihlasene Entomology */}
+          <Route
+            path="/insects"
+            element={
+              <ProtectedRoute roles={["Entomologist", "Admin"]}>
+                <Insects />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/insects-try"
+            element={
+              <ProtectedRoute roles={["Entomologist", "Admin"]}>
+                <InsectsTry />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Chranene trasy pro prihlasene Mykology */}
+          <Route
+            path="/fungi"
+            element={
+              <ProtectedRoute roles={["Mycologist", "Admin"]}>
+                <Fungi />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/fungi-try"
+            element={
+              <ProtectedRoute roles={["Mycologist", "Admin"]}>
+                <FungiTry />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Catch-all route pro neexistujici cesty v ramci aplikace */}
+          <Route path="*" element={<AccessDenied />} />
         </Route>
       </Routes>
     </HashRouter>
