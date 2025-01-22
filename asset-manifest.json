@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/wildlife-reserve-react/static/css/main.a6240ec1.css",
-    "main.js": "/wildlife-reserve-react/static/js/main.fab3a8f9.js",
+    "main.js": "/wildlife-reserve-react/static/js/main.d0e72993.js",
     "index.html": "/wildlife-reserve-react/index.html",
     "main.a6240ec1.css.map": "/wildlife-reserve-react/static/css/main.a6240ec1.css.map",
-    "main.fab3a8f9.js.map": "/wildlife-reserve-react/static/js/main.fab3a8f9.js.map"
+    "main.d0e72993.js.map": "/wildlife-reserve-react/static/js/main.d0e72993.js.map"
   },
   "entrypoints": [
     "static/css/main.a6240ec1.css",
-    "static/js/main.fab3a8f9.js"
+    "static/js/main.d0e72993.js"
   ]
 }
