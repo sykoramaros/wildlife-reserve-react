@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-transform-private-methods": "^7.25.9",
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
