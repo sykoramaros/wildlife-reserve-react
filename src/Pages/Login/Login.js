@@ -1,7 +1,8 @@
 import React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import AccountService from "../../Services/AccountService/AccountService"
+import { Tooltip } from "bootstrap"
 
 const Login = () => {
   const [username, setUsername] = useState("")
@@ -9,6 +10,15 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate() // Hook useNavigate uvnitř komponenty
+
+  useEffect(() => {
+    // Inicializace tooltipů pro obě pole
+    const usernameInput = document.getElementById("username")
+    const passwordInput = document.getElementById("password")
+
+    if (usernameInput) new Tooltip(usernameInput)
+    if (passwordInput) new Tooltip(passwordInput)
+  }, [])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -54,6 +64,11 @@ const Login = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               disabled={isLoading}
+              data-bs-toggle="tooltip"
+              data-bs-title="Username: '<strong class='text-warning'>sef</strong>' or '<strong class='text-warning'>guest</strong>'"
+              data-bs-html="true"
+              data-bs-placement="top"
+              autoFocus
               required
             />
           </div>
@@ -69,6 +84,10 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={isLoading}
+              data-bs-toggle="tooltip"
+              data-bs-title="Password: '<strong class='text-warning'>Abcd1234.</strong>' (same for sef and guest)"
+              data-bs-html="true"
+              data-bs-placement="top"
               required
             />
           </div>

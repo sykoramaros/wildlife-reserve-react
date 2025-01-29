@@ -11,7 +11,11 @@ const Home = () => {
             </h1>
           </div>
           <div className="col d-flex justify-content-center">
-            <img src="./Photos/HomeImage.png" className="img-fluid" />
+            <img
+              src={`${process.env.PUBLIC_URL}/Photos/HomeImage.png`}
+              className="img-fluid w-50"
+              alt="Zvirata"
+            />
           </div>
         </div>
       </div>
