@@ -49,7 +49,7 @@ const Users = () => {
       setUsers([...users, result.user]) // Přidá nového uživatele do seznamu
       handleCloseCreateModal() // Zavře modal pro přidání uživatele
     } else {
-      console.error("Chyba při vytvření uživatele:", result)
+      console.error("Chyba při vytvaření uživatele:", result)
     }
   }
 

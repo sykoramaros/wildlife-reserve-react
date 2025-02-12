@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import AccountService from "../../Services/AccountService/AccountService"
+import { login } from "../../Services/AccountService/AccountService"
 import { Tooltip } from "bootstrap"
 
 const Login = () => {
@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       console.log("Logging in...")
-      const result = await AccountService.login({
+      const result = await login({
         username: username.trim(),
         password: password,
       })
